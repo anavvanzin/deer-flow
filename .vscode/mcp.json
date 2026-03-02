@@ -1,0 +1,51 @@
+{
+	"servers": {
+		"io.github.github/github-mcp-server": {
+			"type": "stdio",
+			"command": "docker",
+			"args": [
+				"run",
+				"-i",
+				"--rm",
+				"-e",
+				"GITHUB_PERSONAL_ACCESS_TOKEN=${input:token}",
+				"ghcr.io/github/github-mcp-server:0.31.0"
+			],
+			"gallery": "https://api.mcp.github.com",
+			"version": "0.31.0"
+		},
+		"sunriseapps/imagesorcery-mcp": {
+			"type": "stdio",
+			"command": "other",
+			"gallery": "https://api.mcp.github.com",
+			"version": "1.0.0"
+		},
+		"firecrawl/firecrawl-mcp-server": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"firecrawl-mcp@latest"
+			],
+			"env": {
+				"FIRECRAWL_API_KEY": "${input:api_key}"
+			},
+			"gallery": "https://api.mcp.github.com",
+			"version": "1.0.0"
+		}
+	},
+	"inputs": [
+		{
+			"id": "token",
+			"type": "promptString",
+			"description": "",
+			"password": true
+		},
+		{
+			"id": "api_key",
+			"type": "promptString",
+			"description": "your API key",
+			"password": true
+		}
+	]
+}
